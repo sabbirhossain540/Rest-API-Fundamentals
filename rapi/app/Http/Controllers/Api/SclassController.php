@@ -38,7 +38,14 @@ class SclassController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'class_name' => 'required | max:25'
+        ]);
+
+        $data = array();
+        $data['class_name'] = $request->class_name;
+        $insert = DB::table('sclasses')->insert($data);
+        return response('inserted Successfully');
     }
 
     /**
